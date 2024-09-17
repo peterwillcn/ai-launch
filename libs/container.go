@@ -25,6 +25,7 @@ type Container struct {
 	ManiFests  []string `screw:"-f;--ManiFests" usage:"ManiFests name"`
 	ImageAPI   string   `screw:"-a;--ImageAPI" usage:"oneapi image name"`
 	ImagePG    string   `screw:"-g;--ImagePG" usage:"postgres image name"`
+	ImageSD    string   `screw:"-g;--ImageSD" usage:"fastgpt sandbox image name"`
 	ImageMG    string   `screw:"-m;--ImageMG" usage:"mongo image name"`
 	ImageMySql string   `screw:"-q;--ImageMySql" usage:"mysql image name"`
 	ImageGPT   string   `screw:"-t;--ImageGPT" usage:"fastgpt image name"`
@@ -49,11 +50,12 @@ func NewContainer() *Container {
 			TmplDir:    "./tmpl",
 			ManiFests:  []string{"gpt"},
 			ConfigPath: "deploy.json",
-			ImageAPI:   "justsong/one-api:latest",
-			ImageGPT:   "ghcr.io/labring/fastgpt:latest",
-			ImagePG:    "pgvector/pgvector:0.7.0-pg15",
-			ImageMG:    "mongo:5.0.18",
-			ImageMySql: "mysql:8.0.36",
+			ImageAPI:   "registry.cn-hangzhou.aliyuncs.com/fastgpt/one-api:v0.6.6",
+			ImageGPT:   "registry.cn-hangzhou.aliyuncs.com/fastgpt/fastgpt:v4.8.9",
+			ImagePG:    "registry.cn-hangzhou.aliyuncs.com/fastgpt/pgvector:v0.7.0",
+			ImageGPTsandbox: "registry.cn-hangzhou.aliyuncs.com/fastgpt/fastgpt-sandbox:latest"
+			ImageMG:    "registry.cn-hangzhou.aliyuncs.com/fastgpt/mongo:5.0.18",
+			ImageMySql: "image: registry.cn-hangzhou.aliyuncs.com/fastgpt/mysql:8.0.36",
 			GptPass:    "admin",
 		}
 
