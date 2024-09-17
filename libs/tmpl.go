@@ -91,7 +91,7 @@ services:
 
   sandbox:
     container_name: sandbox
-    image: ghcr.io/labring/fastgpt-sandbox:latest
+    image: {{ .ImageSD }}
     networks:
       - fastgpt
     restart: always
@@ -436,8 +436,8 @@ var GptConfig = `
       "queryConfig": {}
     },
     {
-      "model": "embedding3",
-      "name": "Zhipu-Embedding-3",
+      "model": "embedding-2",
+      "name": "Zhipu-Embedding-2",
       "avatar": "/imgs/model/chatglm.svg",
       "charsPointsPrice": 0,
       "defaultToken": 512,
@@ -449,6 +449,16 @@ var GptConfig = `
       "dbConfig": {},
       "queryConfig": {}
     },
+    {
+      "model": "embo-01",
+      "name": "Embedding-Minimax",
+      "charsPointsPrice": 0,
+      "defaultToken": 1024,
+      "maxToken": 4096,
+      "weight": 100,
+      "dbConfig": {},
+      "queryConfig": {}
+        },
     {
       "model": "text-embedding-3-large",
       "name": "text-embedding-3-large",
@@ -471,7 +481,15 @@ var GptConfig = `
       "weight": 100
     }
   ],
-  "reRankModels": [],
+  "reRankModels": [    	
+   {
+            "model": "jina-reranker-v2-base-multilingual",
+            "name": "jina", 
+            "requestUrl": "https://api.jina.ai/v1/rerank",
+            "requestAuth": "jina_2d3f208e8029405e8661abb9adcfddc8XpINy7NtD91azAhrZEcSb35jHSJz",
+            "top-n": 6
+    }
+  ],
   "audioSpeechModels": [
     {
       "model": "tts-1",
